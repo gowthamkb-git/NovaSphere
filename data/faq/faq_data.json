@@ -1,0 +1,106 @@
+[
+  {
+    "question": "How far in advance should I request annual leave?",
+    "answer": "Submit one- or two-day annual leave at least three business days in advance and longer leave at least ten business days in advance unless an emergency prevents advance notice."
+  },
+  {
+    "question": "Can a manager approve leave only in chat or email?",
+    "answer": "No. Informal discussion can happen in chat or email, but the request must be entered and approved in the HRIS because that record drives payroll, attendance, and audit visibility."
+  },
+  {
+    "question": "What should I do if I wake up sick and cannot work?",
+    "answer": "Notify your manager as early as possible, record the absence in the HRIS when you are able, and share medical documentation only with People Operations when policy or local law requires it."
+  },
+  {
+    "question": "Where can I see my benefits options and payroll deductions?",
+    "answer": "Use the internal benefits portal or HRIS benefits section, which contains plan summaries, contribution details, carrier contacts, and enrollment confirmation records."
+  },
+  {
+    "question": "Who should I contact about a workplace conduct concern?",
+    "answer": "Raise the concern through your manager, Human Resources, or the confidential ethics route. If the issue involves your manager or retaliation risk, bypass the local reporting line and contact HR directly."
+  },
+  {
+    "question": "What should happen before my first day?",
+    "answer": "Your manager, People Operations, and IT should complete role setup, payroll preparation, identity provisioning, and orientation scheduling before day one so your first week is not blocked by avoidable setup issues."
+  },
+  {
+    "question": "What are the most important first-day tasks for a new hire?",
+    "answer": "You should confirm access to core systems, verify HR and payroll details, attend orientation, meet your manager and onboarding buddy, and raise any missing access immediately through the onboarding queue."
+  },
+  {
+    "question": "Who approves role-based system access for a new hire?",
+    "answer": "The hiring manager validates the role-based access need, and IT Operations provisions it through approved templates and least-privilege controls."
+  },
+  {
+    "question": "What access is considered baseline during onboarding?",
+    "answer": "Baseline access usually includes email, calendar, chat, HRIS, ticketing, documentation, and password manager access, plus company-required device and MFA controls."
+  },
+  {
+    "question": "When should missing onboarding access be escalated?",
+    "answer": "Escalate immediately when missing access affects mandatory training, payroll, security setup, or the employee's ability to begin first-week work."
+  },
+  {
+    "question": "What makes an API ready for release?",
+    "answer": "An API is release-ready when its contract is documented, validation and error behavior are clear, auth controls are in place, observability exists, and required testing and review evidence are complete."
+  },
+  {
+    "question": "Should APIs return generic errors?",
+    "answer": "No. Production APIs should return structured errors with machine-readable codes, human-readable guidance, and a correlation identifier that maps to logs or traces."
+  },
+  {
+    "question": "What belongs in a pull request description?",
+    "answer": "A strong pull request description explains behavior change, user impact, risks, rollout needs, validation steps, and any documentation or follow-up work required for safe review and release."
+  },
+  {
+    "question": "When do I need integration tests instead of only unit tests?",
+    "answer": "Use integration tests when the change affects persistence, service contracts, external dependencies, or runtime behavior that isolated unit tests cannot validate realistically."
+  },
+  {
+    "question": "What should I verify after deploying a service?",
+    "answer": "Verify critical user flows, health checks, dashboards, error rates, latency, queue depth, and any business signals that reflect the change after deployment."
+  },
+  {
+    "question": "When should a release be rolled back?",
+    "answer": "Rollback when the release causes material customer impact, sustained instability, authentication failure, or data integrity risk and the rollback path is safer than continuing forward."
+  },
+  {
+    "question": "What is the first action in a high-severity incident?",
+    "answer": "Classify the severity, open the incident record and response channel, assign an incident commander, and begin mitigation planning before deep root-cause analysis."
+  },
+  {
+    "question": "How often should incident updates be posted?",
+    "answer": "Active high-severity incidents should usually receive updates every fifteen to thirty minutes with current impact, actions taken, and the next expected update time."
+  },
+  {
+    "question": "What should be captured in an incident record?",
+    "answer": "Capture severity changes, responder assignments, timeline entries, mitigation actions, stakeholder communications, and closure evidence in the incident record."
+  },
+  {
+    "question": "Why do restore drills matter if backups are completing successfully?",
+    "answer": "Because a successful backup job does not prove a usable recovery. Restore drills confirm timing, data integrity, operational usability, and the quality of the runbook under realistic conditions."
+  },
+  {
+    "question": "What should happen before a production recovery is started?",
+    "answer": "The incident lead and system owner should confirm the business objective, selected restore point, expected data-loss window, and approval to begin the recovery procedure."
+  },
+  {
+    "question": "When should operations escalate beyond normal triage?",
+    "answer": "Escalate when an issue exceeds response thresholds, introduces customer or compliance risk, affects multiple accounts, or needs expertise outside frontline operations."
+  },
+  {
+    "question": "What belongs in an escalation message?",
+    "answer": "Include a concise summary, severity, business impact, actions taken, current blockers, requested support, and links to evidence such as tickets or dashboards."
+  },
+  {
+    "question": "Who owns communication during an operational incident?",
+    "answer": "The operations coordinator or incident commander owns communication cadence, while specialist responders provide the current facts and technical status needed for accurate updates."
+  },
+  {
+    "question": "What makes a good operational handoff?",
+    "answer": "A good handoff includes current impact, work already completed, open questions, known risks, current owner, and the next expected update time so the receiving team does not lose context."
+  },
+  {
+    "question": "How often should the escalation matrix be reviewed?",
+    "answer": "The escalation matrix should be reviewed at least quarterly and any time team ownership, vendor responsibility, or response thresholds change materially."
+  }
+]

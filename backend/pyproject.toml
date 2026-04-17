@@ -1,0 +1,30 @@
+[project]
+name = "rag-eval-backend"
+version = "0.1.0"
+description = "Backend for a RAG evaluation system"
+readme = "../README.md"
+requires-python = ">=3.11"
+dependencies = [
+    "beautifulsoup4",
+    "faker",
+    "fastapi",
+    "groq",
+    "ipykernel",
+    "jupyter",
+    "langchain-community",
+    "langchain-groq",
+    "langchain-text-splitters",
+    "langsmith",
+    "pandas",
+    "pypdf",
+    "pydantic",
+    "pymongo",
+    "python-dotenv",
+    "reportlab",
+    "requests",
+    "sentence-transformers",
+    "uvicorn",
+]
+
+[tool.uv]
+package = false

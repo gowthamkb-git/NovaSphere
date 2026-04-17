@@ -1,0 +1,142 @@
+[
+  {
+    "title": "Leave and Time-Off Policy",
+    "department": "hr",
+    "version": "1.1",
+    "owner": "Donald Walker, People Operations Manager",
+    "created_date": "2025-05-18",
+    "updated_date": "2025-06-08",
+    "access_level": "Internal - All Employees",
+    "source_filename": "hr_leave_policy_v1.pdf"
+  },
+  {
+    "title": "Code of Conduct and Workplace Behavior Policy",
+    "department": "hr",
+    "version": "1.1",
+    "owner": "Stephanie Miller, Director of Human Resources",
+    "created_date": "2025-08-02",
+    "updated_date": "2025-08-21",
+    "access_level": "Internal - All Employees",
+    "source_filename": "hr_code_of_conduct_v1.pdf"
+  },
+  {
+    "title": "Employee Benefits Overview",
+    "department": "hr",
+    "version": "1.1",
+    "owner": "Daniel Wagner, Benefits Program Lead",
+    "created_date": "2024-11-30",
+    "updated_date": "2024-12-06",
+    "access_level": "Internal - All Employees",
+    "source_filename": "hr_employee_benefits_v1.pdf"
+  },
+  {
+    "title": "New Employee Guide",
+    "department": "onboarding",
+    "version": "1.1",
+    "owner": "Matthew Gardner, Talent Enablement Lead",
+    "created_date": "2024-01-28",
+    "updated_date": "2024-05-15",
+    "access_level": "Internal - All Employees",
+    "source_filename": "onboarding_new_employee_guide_v1.pdf"
+  },
+  {
+    "title": "First-Week Onboarding Checklist",
+    "department": "onboarding",
+    "version": "1.1",
+    "owner": "Rhonda Smith, People Programs Manager",
+    "created_date": "2024-06-27",
+    "updated_date": "2024-09-22",
+    "access_level": "Internal - All Employees",
+    "source_filename": "onboarding_checklist_v1.pdf"
+  },
+  {
+    "title": "Account and Access Setup Process",
+    "department": "onboarding",
+    "version": "1.1",
+    "owner": "Gina Moore, IT Operations Lead",
+    "created_date": "2025-09-24",
+    "updated_date": "2025-10-25",
+    "access_level": "Internal - All Employees",
+    "source_filename": "onboarding_account_setup_process_v1.pdf"
+  },
+  {
+    "title": "API Development Guidelines",
+    "department": "engineering",
+    "version": "1.1",
+    "owner": "James Howard, Staff Backend Engineer",
+    "created_date": "2025-08-23",
+    "updated_date": "2025-10-27",
+    "access_level": "Internal - Engineering",
+    "source_filename": "engineering_api_guidelines_v1.pdf"
+  },
+  {
+    "title": "Engineering Code Standards",
+    "department": "engineering",
+    "version": "1.1",
+    "owner": "Andrew Stevens, Engineering Manager",
+    "created_date": "2024-10-01",
+    "updated_date": "2025-01-26",
+    "access_level": "Internal - Engineering",
+    "source_filename": "engineering_code_standards_v1.pdf"
+  },
+  {
+    "title": "Service Deployment Process",
+    "department": "engineering",
+    "version": "1.1",
+    "owner": "Edward Fuller, Platform Engineering Lead",
+    "created_date": "2024-04-13",
+    "updated_date": "2024-06-25",
+    "access_level": "Internal - Engineering",
+    "source_filename": "engineering_deployment_process_v1.pdf"
+  },
+  {
+    "title": "Deployment Standard Operating Procedure",
+    "department": "sop",
+    "version": "1.1",
+    "owner": "Michele Williams, Release Manager",
+    "created_date": "2025-11-25",
+    "updated_date": "2026-02-03",
+    "access_level": "Internal - Operations and Engineering",
+    "source_filename": "sop_deployment_v1.pdf"
+  },
+  {
+    "title": "Incident Response Standard Operating Procedure",
+    "department": "sop",
+    "version": "1.1",
+    "owner": "Bobby Hall, Site Reliability Manager",
+    "created_date": "2024-07-03",
+    "updated_date": "2024-11-30",
+    "access_level": "Internal - Operations and Engineering",
+    "source_filename": "sop_incident_response_v1.pdf"
+  },
+  {
+    "title": "Data Backup and Recovery Standard Operating Procedure",
+    "department": "sop",
+    "version": "1.1",
+    "owner": "Mark Diaz, Infrastructure Operations Manager",
+    "created_date": "2024-03-26",
+    "updated_date": "2024-06-07",
+    "access_level": "Internal - Restricted",
+    "source_filename": "sop_data_backup_v1.pdf"
+  },
+  {
+    "title": "Operations Incident Management Guide",
+    "department": "operations",
+    "version": "1.1",
+    "owner": "Derek Zuniga, Operations Program Manager",
+    "created_date": "2024-10-21",
+    "updated_date": "2024-12-28",
+    "access_level": "Internal - Operations",
+    "source_filename": "operations_incident_management_v1.pdf"
+  },
+  {
+    "title": "Operations Escalation Matrix",
+    "department": "operations",
+    "version": "1.1",
+    "owner": "Carolyn Daniel, Business Operations Director",
+    "created_date": "2025-05-25",
+    "updated_date": "2025-06-07",
+    "access_level": "Internal - Operations",
+    "source_filename": "operations_escalation_matrix_v1.pdf"
+  }
+]

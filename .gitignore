@@ -1,0 +1,14 @@
+.uv-cache/
+frontend/.next/
+frontend/node_modules/
+backend/.venv/
+backend/.env
+backend/.env.*
+!backend/.env.example
+frontend/.env
+frontend/.env.*
+!frontend/.env.example
+**/__pycache__/
+*.pyc
+*.pyo
+*.pyd
