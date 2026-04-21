@@ -21,7 +21,6 @@ export interface ChatResponse {
 
 export interface ChatRequest {
   question: string;
-  session_id: string;
   conversation_id?: string | null;
   department?: Department | null;
 }
@@ -49,7 +48,18 @@ export interface ConversationDetail {
 }
 
 const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8000",
+  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8001",
+});
+
+API.interceptors.request.use((config) => {
+  const token =
+    typeof window === "undefined"
+      ? null
+      : window.localStorage.getItem("novasphere-access-token");
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
 });
 
 export default API;

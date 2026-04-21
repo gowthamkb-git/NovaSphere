@@ -2,8 +2,9 @@ import logging
 from datetime import UTC, datetime
 from uuid import uuid4
 
-from fastapi import APIRouter, HTTPException, Query
+from fastapi import APIRouter, Depends, HTTPException
 
+from app.api.dependencies.auth import get_current_user
 from app.db.mongo import get_chat_history_collection
 from app.schemas.assistant import (
     ChatMessage,
@@ -58,9 +59,9 @@ def _serialize_summary(document: dict) -> ConversationSummary:
     )
 
 
-def _get_conversation_or_404(*, session_id: str, conversation_id: str) -> dict:
+def _get_conversation_or_404(*, user_id: str, conversation_id: str) -> dict:
     document = get_chat_history_collection().find_one(
-        {"session_id": session_id, "conversation_id": conversation_id},
+        {"user_id": user_id, "conversation_id": conversation_id},
         {"_id": 0},
     )
     if document is None:
@@ -69,24 +70,22 @@ def _get_conversation_or_404(*, session_id: str, conversation_id: str) -> dict:
 
 
 @router.post("/chat", response_model=ChatResponse, tags=["chat"])
-def chat(payload: ChatRequest) -> ChatResponse:
-    session_id = payload.session_id.strip()
-    if not session_id:
-        raise HTTPException(status_code=400, detail="session_id is required.")
-
+def chat(payload: ChatRequest, current_user: dict = Depends(get_current_user)) -> ChatResponse:
     collection = get_chat_history_collection()
     conversation_id = payload.conversation_id.strip() if payload.conversation_id else str(uuid4())
     now = _utc_now()
+    user_id = str(current_user["_id"])
 
     existing_conversation = collection.find_one(
-        {"session_id": session_id, "conversation_id": conversation_id},
+        {"user_id": user_id, "conversation_id": conversation_id},
         {"_id": 0, "conversation_id": 1},
     )
     if existing_conversation is None:
         collection.insert_one(
             {
                 "conversation_id": conversation_id,
-                "session_id": session_id,
+                "user_id": user_id,
+                "user_email": current_user.get("email", ""),
                 "title": _build_title(payload.question),
                 "created_at": now,
                 "updated_at": now,
@@ -107,7 +106,7 @@ def chat(payload: ChatRequest) -> ChatResponse:
 
     assistant_created_at = _utc_now()
     collection.update_one(
-        {"session_id": session_id, "conversation_id": conversation_id},
+        {"user_id": user_id, "conversation_id": conversation_id},
         {
             "$push": {
                 "messages": {
@@ -139,10 +138,10 @@ def chat(payload: ChatRequest) -> ChatResponse:
 
 
 @router.get("/chat/history", response_model=list[ConversationSummary], tags=["chat"])
-def get_chat_history(session_id: str = Query(..., min_length=1)) -> list[ConversationSummary]:
+def get_chat_history(current_user: dict = Depends(get_current_user)) -> list[ConversationSummary]:
     documents = list(
         get_chat_history_collection()
-        .find({"session_id": session_id.strip()}, {"_id": 0})
+        .find({"user_id": str(current_user["_id"])}, {"_id": 0})
         .sort("updated_at", -1)
     )
     return [_serialize_summary(document) for document in documents]
@@ -151,10 +150,10 @@ def get_chat_history(session_id: str = Query(..., min_length=1)) -> list[Convers
 @router.get("/chat/history/{conversation_id}", response_model=ConversationDetail, tags=["chat"])
 def get_chat_conversation(
     conversation_id: str,
-    session_id: str = Query(..., min_length=1),
+    current_user: dict = Depends(get_current_user),
 ) -> ConversationDetail:
     document = _get_conversation_or_404(
-        session_id=session_id.strip(),
+        user_id=str(current_user["_id"]),
         conversation_id=conversation_id,
     )
     return ConversationDetail(

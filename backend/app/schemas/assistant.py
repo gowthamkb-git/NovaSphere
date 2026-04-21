@@ -13,7 +13,6 @@ class AskQuestionResponse(BaseModel):
 class ChatRequest(BaseModel):
     question: str
     department: str | None = None
-    session_id: str
     conversation_id: str | None = None
 
 

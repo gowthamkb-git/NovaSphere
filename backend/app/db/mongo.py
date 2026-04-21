@@ -34,6 +34,12 @@ def get_rag_chunks_collection() -> Collection:
 
 def get_chat_history_collection() -> Collection:
     collection = get_database()["chat_history"]
-    collection.create_index([("session_id", 1), ("updated_at", -1)])
+    collection.create_index([("user_id", 1), ("updated_at", -1)])
     collection.create_index([("conversation_id", 1)], unique=True)
+    return collection
+
+
+def get_users_collection() -> Collection:
+    collection = get_database()["users"]
+    collection.create_index([("email", 1)], unique=True)
     return collection

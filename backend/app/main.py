@@ -1,3 +1,5 @@
+import logging
+
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
@@ -7,6 +9,7 @@ from rag.retrieval.vector_search import validate_vector_search_index
 
 settings = get_settings()
 app = FastAPI(title=settings.app_name)
+logger = logging.getLogger(__name__)
 
 app.add_middleware(
     CORSMiddleware,
@@ -23,6 +26,16 @@ app.include_router(api_router)
 def validate_rag_dependencies() -> None:
     if not settings.mongodb_uri.strip():
         raise RuntimeError("MONGODB_URI is not set.")
+
     if not settings.groq_api_key.strip():
-        raise RuntimeError("GROQ_API_KEY is not set.")
-    validate_vector_search_index()
+        logger.warning(
+            "GROQ_API_KEY is not set. Authentication routes can still work, but RAG chat will fail until the key is configured."
+        )
+        return
+
+    try:
+        validate_vector_search_index()
+    except Exception:
+        logger.exception(
+            "RAG startup validation failed. Authentication routes can still work, but RAG chat will fail until the vector search setup is fixed."
+        )
