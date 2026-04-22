@@ -47,19 +47,36 @@ export interface ConversationDetail {
   messages: ChatMessageRecord[];
 }
 
-const API = axios.create({
-  baseURL: process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://127.0.0.1:8001",
-});
+function resolveApiBaseUrl() {
+  const configuredBaseUrl =
+    process.env.NEXT_PUBLIC_API_BASE_URL ?? "http://localhost:8000";
 
-API.interceptors.request.use((config) => {
-  const token =
-    typeof window === "undefined"
-      ? null
-      : window.localStorage.getItem("novasphere-access-token");
-  if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+  if (typeof window === "undefined") {
+    return configuredBaseUrl;
   }
-  return config;
+
+  try {
+    const parsedUrl = new URL(configuredBaseUrl);
+    const isLocalBackendHost =
+      parsedUrl.hostname === "localhost" || parsedUrl.hostname === "127.0.0.1";
+    const isLocalFrontendHost =
+      window.location.hostname === "localhost" ||
+      window.location.hostname === "127.0.0.1";
+
+    if (isLocalBackendHost && isLocalFrontendHost) {
+      parsedUrl.hostname = window.location.hostname;
+      return parsedUrl.toString().replace(/\/$/, "");
+    }
+  } catch {
+    return configuredBaseUrl;
+  }
+
+  return configuredBaseUrl;
+}
+
+const API = axios.create({
+  baseURL: resolveApiBaseUrl(),
+  withCredentials: true,
 });
 
 export default API;

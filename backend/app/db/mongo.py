@@ -43,3 +43,11 @@ def get_users_collection() -> Collection:
     collection = get_database()["users"]
     collection.create_index([("email", 1)], unique=True)
     return collection
+
+
+def get_sessions_collection() -> Collection:
+    collection = get_database()["sessions"]
+    collection.create_index([("session_id", 1)], unique=True)
+    collection.create_index([("user_id", 1), ("expires_at", -1)])
+    collection.create_index([("expires_at", 1)], expireAfterSeconds=0)
+    return collection

@@ -39,103 +39,101 @@ export default function LoginPage() {
   };
 
   return (
-    <main className="relative min-h-screen overflow-hidden bg-[#f4efff] text-slate-900">
-      <div className="absolute -left-20 -top-20 h-72 w-72 rounded-full bg-violet-200/50 blur-sm" />
-      <div className="absolute -bottom-24 -right-20 h-72 w-72 rounded-full bg-violet-200/45 blur-sm" />
+    <main className="relative min-h-screen overflow-x-hidden bg-[#070b24] text-white">
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(59,130,246,0.2),_transparent_34%),radial-gradient(circle_at_top_right,_rgba(168,85,247,0.2),_transparent_30%),linear-gradient(180deg,_#0a1030_0%,_#090c24_52%,_#140b35_100%)]" />
+      <div className="absolute -left-12 top-[20%] h-40 w-40 rounded-full border border-violet-400/20 bg-violet-500/10 blur-sm" />
+      <div className="absolute -right-10 top-16 h-52 w-52 rounded-full border border-fuchsia-400/20 bg-fuchsia-500/10 blur-sm" />
+      <div className="absolute bottom-[-8%] left-1/2 h-56 w-[70%] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,_rgba(217,70,239,0.28),_rgba(124,58,237,0.18)_35%,_transparent_72%)] blur-3xl" />
 
-      <section className="relative flex min-h-screen items-center justify-center px-4 py-10">
-        <div className="relative w-full max-w-4xl overflow-hidden rounded-none bg-[linear-gradient(180deg,_#8451ea_0%,_#6e45cf_35%,_#513296_100%)] px-6 py-14 shadow-[0_24px_80px_rgba(77,43,150,0.28)] sm:rounded-[2px] sm:px-10 lg:px-16">
-          <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(110%_55%_at_0%_20%,_rgba(255,255,255,0.08),_transparent_42%),radial-gradient(90%_45%_at_100%_18%,_rgba(255,255,255,0.12),_transparent_34%),radial-gradient(80%_35%_at_20%_82%,_rgba(255,255,255,0.12),_transparent_36%)]" />
-          <div className="pointer-events-none absolute left-0 top-[18%] h-px w-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.22),transparent)]" />
-          <div className="pointer-events-none absolute bottom-[26%] left-0 h-px w-full bg-[linear-gradient(90deg,transparent,rgba(255,255,255,0.2),transparent)]" />
-
-          <div className="relative mx-auto w-full max-w-md rounded-[22px] bg-white px-6 py-8 shadow-[0_22px_60px_rgba(34,17,76,0.28)] sm:px-8">
-            <h1 className="text-center text-3xl font-semibold tracking-tight text-slate-900">
-              Login
-            </h1>
-            <p className="mt-2 text-center text-sm text-slate-500">
-              Please enter your details to login.
-            </p>
-
-            <div className="mt-7 grid gap-3 sm:grid-cols-2">
-              <button
-                className="rounded-xl bg-slate-100 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-200"
-                type="button"
+      <section className="relative flex min-h-screen items-center justify-center px-4 py-10 sm:px-6 lg:px-10">
+        <div className="mx-auto grid w-full max-w-6xl overflow-hidden rounded-[34px] border border-violet-300/25 bg-[linear-gradient(145deg,rgba(20,28,66,0.92),rgba(20,18,57,0.9)_58%,rgba(45,20,79,0.9))] shadow-[0_30px_120px_rgba(25,15,71,0.65)] lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="relative p-8 sm:p-12 lg:p-14">
+            <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_rgba(96,165,250,0.16),_transparent_30%),radial-gradient(circle_at_bottom_left,_rgba(217,70,239,0.18),_transparent_34%)]" />
+            <div className="relative">
+              <Link
+                className="inline-flex items-center gap-3 text-sm font-medium text-violet-100/90"
+                href="/"
               >
-                Google
-              </button>
-              <button
-                className="rounded-xl bg-slate-100 px-4 py-3 text-sm font-medium text-slate-700 transition hover:bg-slate-200"
-                type="button"
-              >
-                Apple
-              </button>
-            </div>
-
-            <div className="my-5 flex items-center gap-4 text-sm text-slate-400">
-              <div className="h-px flex-1 bg-slate-200" />
-              <span>Or</span>
-              <div className="h-px flex-1 bg-slate-200" />
-            </div>
-
-            <form className="space-y-4" onSubmit={handleSubmit}>
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="email">
-                  Email
-                </label>
-                <input
-                  className="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-white"
-                  id="email"
-                  onChange={(event) => setEmail(event.target.value)}
-                  placeholder="Enter your Email"
-                  type="email"
-                  value={email}
-                />
-              </div>
-
-              <div>
-                <label className="mb-2 block text-sm font-medium text-slate-700" htmlFor="password">
-                  Password
-                </label>
-                <input
-                  className="w-full rounded-xl border border-slate-200 bg-slate-100 px-4 py-3 text-sm text-slate-900 outline-none transition placeholder:text-slate-400 focus:border-violet-400 focus:bg-white"
-                  id="password"
-                  onChange={(event) => setPassword(event.target.value)}
-                  placeholder="Enter your password"
-                  type="password"
-                  value={password}
-                />
-              </div>
-
-              <div className="flex items-center justify-between gap-4 text-sm">
-                <label className="flex items-center gap-2 text-slate-600">
-                  <input className="h-4 w-4 rounded border-slate-300" type="checkbox" />
-                  Remember me
-                </label>
-                <Link className="font-medium text-violet-500 hover:text-violet-600" href="#">
-                  Forgot Password
-                </Link>
-              </div>
-
-              {error ? (
-                <p className="text-sm text-rose-500">{error}</p>
-              ) : null}
-
-              <button
-                className="mt-2 w-full rounded-xl bg-[linear-gradient(90deg,_#8b5cf6,_#7c3aed)] px-4 py-3 text-sm font-semibold text-white shadow-[0_14px_34px_rgba(124,58,237,0.28)] transition hover:scale-[1.01]"
-                disabled={isSubmitting}
-                type="submit"
-              >
-                {isSubmitting ? "Signing in..." : "Log In"}
-              </button>
-            </form>
-
-            <p className="mt-6 text-center text-sm text-slate-500">
-              Don&apos;t have an account yet?{" "}
-              <Link className="font-semibold text-violet-500 hover:text-violet-600" href="/signup">
-                Sign Up
+                <span className="flex h-10 w-10 items-center justify-center rounded-full bg-[radial-gradient(circle_at_35%_30%,_#c084fc,_#7c3aed_55%,_#312e81)] shadow-[0_0_22px_rgba(168,85,247,0.45)]">
+                  <span className="h-2.5 w-2.5 rounded-full bg-white/90" />
+                </span>
+                NovaSphere AI
               </Link>
-            </p>
+
+              <div className="mt-14 max-w-md">
+                <p className="text-sm font-semibold uppercase tracking-[0.24em] text-violet-200/85">
+                  Welcome Back
+                </p>
+                <h1 className="mt-4 text-4xl font-semibold tracking-tight text-white sm:text-5xl">
+                  Sign in to your company workspace
+                </h1>
+                <p className="mt-5 text-base leading-8 text-slate-300/80">
+                  Access your NovaSphere workspace, resume your registered bot
+                  conversations, and keep internal knowledge available in one place.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-white/10 bg-white/[0.04] p-8 sm:p-10 lg:border-l lg:border-t-0 lg:p-12">
+            <div className="mx-auto w-full max-w-md">
+              <p className="text-sm uppercase tracking-[0.22em] text-violet-200/80">
+                Login
+              </p>
+              <h2 className="mt-3 text-3xl font-semibold text-white">Continue to NovaSphere</h2>
+              <p className="mt-3 text-sm leading-7 text-slate-300/75">
+                Use your registered account to enter the Teams-style workspace.
+              </p>
+
+              <form className="mt-8 space-y-5" onSubmit={handleSubmit}>
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-200" htmlFor="email">
+                    Email
+                  </label>
+                  <input
+                    className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-violet-300/50 focus:bg-white/10"
+                    id="email"
+                    onChange={(event) => setEmail(event.target.value)}
+                    placeholder="Enter your work email"
+                    type="email"
+                    value={email}
+                  />
+                </div>
+
+                <div>
+                  <label className="mb-2 block text-sm font-medium text-slate-200" htmlFor="password">
+                    Password
+                  </label>
+                  <input
+                    className="w-full rounded-2xl border border-white/10 bg-white/8 px-4 py-3.5 text-sm text-white outline-none transition placeholder:text-slate-400 focus:border-violet-300/50 focus:bg-white/10"
+                    id="password"
+                    onChange={(event) => setPassword(event.target.value)}
+                    placeholder="Enter your password"
+                    type="password"
+                    value={password}
+                  />
+                </div>
+
+                {error ? (
+                  <p className="text-sm text-rose-300">{error}</p>
+                ) : null}
+
+                <button
+                  className="w-full rounded-2xl bg-[linear-gradient(135deg,_#7c3aed,_#d946ef)] px-5 py-3.5 text-sm font-semibold text-white shadow-[0_16px_36px_rgba(168,85,247,0.32)] transition hover:scale-[1.01] disabled:opacity-70 disabled:hover:scale-100"
+                  disabled={isSubmitting}
+                  type="submit"
+                >
+                  {isSubmitting ? "Signing in..." : "Login"}
+                </button>
+              </form>
+
+              <p className="mt-6 text-sm text-slate-300/78">
+                Don&apos;t have an account yet?{" "}
+                <Link className="font-semibold text-violet-200 hover:text-white" href="/signup">
+                  Sign up
+                </Link>
+              </p>
+            </div>
           </div>
         </div>
       </section>

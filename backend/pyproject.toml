@@ -18,7 +18,6 @@ dependencies = [
     "pandas",
     "pypdf",
     "pydantic",
-    "pyjwt",
     "pymongo",
     "python-dotenv",
     "reportlab",

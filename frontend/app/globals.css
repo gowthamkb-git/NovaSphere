@@ -34,3 +34,7 @@ body {
   border-radius: 9999px;
   background: rgba(99, 102, 241, 0.45);
 }
+
+nextjs-portal {
+  display: none !important;
+}

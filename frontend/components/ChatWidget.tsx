@@ -8,15 +8,14 @@ import API, {
   ChatMessageRecord,
   ChatResponse,
   ConversationDetail,
-  ConversationSummary,
 } from "@/lib/api";
 
-import { ChatModal, WidgetMessage } from "@/components/ChatModal";
+import { ChatPanel, type ChatPanelMessage } from "@/components/ChatPanel";
 
 const STORAGE_SESSION_KEY = "novasphere-session-id";
 const STORAGE_CONVERSATION_KEY = "novasphere-active-conversation-id";
 
-const INITIAL_MESSAGE: WidgetMessage = {
+const INITIAL_MESSAGE: ChatPanelMessage = {
   id: "assistant-welcome",
   role: "assistant",
   content:
@@ -41,7 +40,7 @@ function getBrowserSessionId() {
   return sessionId;
 }
 
-function toWidgetMessages(messages: ChatMessageRecord[]): WidgetMessage[] {
+function toWidgetMessages(messages: ChatMessageRecord[]): ChatPanelMessage[] {
   if (messages.length === 0) {
     return [INITIAL_MESSAGE];
   }
@@ -56,13 +55,10 @@ function toWidgetMessages(messages: ChatMessageRecord[]): WidgetMessage[] {
 
 export function ChatWidget() {
   const [isOpen, setIsOpen] = useState(false);
-  const [isHistoryOpen, setIsHistoryOpen] = useState(false);
   const [inputValue, setInputValue] = useState("");
   const [isSending, setIsSending] = useState(false);
-  const [isLoadingHistory, setIsLoadingHistory] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [messages, setMessages] = useState<WidgetMessage[]>([INITIAL_MESSAGE]);
-  const [historyItems, setHistoryItems] = useState<ConversationSummary[]>([]);
+  const [messages, setMessages] = useState<ChatPanelMessage[]>([INITIAL_MESSAGE]);
   const [sessionId, setSessionId] = useState("");
   const [activeConversationId, setActiveConversationId] = useState<string | null>(
     null,
@@ -71,16 +67,12 @@ export function ChatWidget() {
   const scrollAnchorRef = useRef<HTMLDivElement>(null);
 
   const loadConversationList = async (nextSessionId: string) => {
-    setIsLoadingHistory(true);
     try {
-      const response = await API.get<ConversationSummary[]>("/chat/history", {
+      await API.get("/chat/history", {
         params: { session_id: nextSessionId },
       });
-      setHistoryItems(response.data);
     } catch (requestError) {
       console.error("Failed to load chat history:", requestError);
-    } finally {
-      setIsLoadingHistory(false);
     }
   };
 
@@ -108,15 +100,6 @@ export function ChatWidget() {
       console.error("Failed to load conversation:", requestError);
       setError("Unable to load that conversation.");
     }
-  };
-
-  const startNewConversation = () => {
-    setActiveConversationId(null);
-    setActiveTitle("How can I assist you today?");
-    setMessages([INITIAL_MESSAGE]);
-    setInputValue("");
-    setError(null);
-    window.localStorage.removeItem(STORAGE_CONVERSATION_KEY);
   };
 
   useEffect(() => {
@@ -164,7 +147,7 @@ export function ChatWidget() {
       return;
     }
 
-    const userMessage: WidgetMessage = {
+    const userMessage: ChatPanelMessage = {
       id: `user-${Date.now()}`,
       role: "user",
       content: question,
@@ -223,26 +206,20 @@ export function ChatWidget() {
 
   return (
     <>
-      <ChatModal
-        activeTitle={activeTitle}
-        error={error}
-        historyItems={historyItems}
-        isHistoryOpen={isHistoryOpen}
-        inputValue={inputValue}
-        isOpen={isOpen}
-        isSending={isSending}
-        isLoadingHistory={isLoadingHistory}
-        messages={messages}
-        onBackdropClick={() => setIsOpen(false)}
-        onChangeInput={setInputValue}
-        onClose={() => setIsOpen(false)}
-        onCreateConversation={startNewConversation}
-        onOpenConversation={(conversationId) => void openConversation(conversationId)}
-        onSubmit={() => void handleSubmit()}
-        onToggleHistory={() => setIsHistoryOpen((current) => !current)}
-        scrollAnchorRef={scrollAnchorRef}
-        selectedConversationId={activeConversationId}
-      />
+      <div className="fixed inset-y-0 right-0 z-40">
+        <ChatPanel
+          activeTitle={activeTitle}
+          error={error}
+          inputValue={inputValue}
+          isOpen={isOpen}
+          isSending={isSending}
+          messages={messages}
+          onChangeInput={setInputValue}
+          onClose={() => setIsOpen(false)}
+          onSubmit={() => void handleSubmit()}
+          scrollAnchorRef={scrollAnchorRef}
+        />
+      </div>
 
       <button
         aria-label="Open chat assistant"

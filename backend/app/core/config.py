@@ -12,9 +12,8 @@ class Settings(BaseModel):
     app_name: str = "Company Knowledge Assistant"
     mongodb_uri: str = Field(default="", alias="MONGODB_URI")
     groq_api_key: str = Field(default="", alias="GROQ_API_KEY")
-    jwt_secret_key: str = Field(default="change-me-in-production", alias="JWT_SECRET_KEY")
-    jwt_algorithm: str = "HS256"
-    access_token_expire_minutes: int = 60 * 24 * 7
+    session_cookie_name: str = Field(default="novasphere_session", alias="SESSION_COOKIE_NAME")
+    session_expire_days: int = 7
     mongo_database_name: str = "company_knowledge"
     mongo_collection_name: str = "rag_chunks"
     embedding_model_name: str = Field(default="all-MiniLM-L6-v2", alias="EMBEDDING_MODEL")
@@ -51,14 +50,12 @@ def get_settings() -> Settings:
     return Settings(
         MONGODB_URI=os.getenv("MONGODB_URI", ""),
         GROQ_API_KEY=os.getenv("GROQ_API_KEY", ""),
-        JWT_SECRET_KEY=os.getenv("JWT_SECRET_KEY", "change-me-in-production"),
         EMBEDDING_MODEL=os.getenv("EMBEDDING_MODEL", "all-MiniLM-L6-v2"),
         mongo_database_name=os.getenv("MONGO_DATABASE_NAME", "company_knowledge"),
         mongo_collection_name=os.getenv("MONGO_COLLECTION_NAME", "rag_chunks"),
         groq_model_name=os.getenv("GROQ_MODEL_NAME", "llama-3.1-8b-instant"),
-        access_token_expire_minutes=int(
-            os.getenv("ACCESS_TOKEN_EXPIRE_MINUTES", str(60 * 24 * 7))
-        ),
+        session_cookie_name=os.getenv("SESSION_COOKIE_NAME", "novasphere_session"),
+        session_expire_days=int(os.getenv("SESSION_EXPIRE_DAYS", "7")),
         vector_search_index_name=os.getenv("VECTOR_SEARCH_INDEX_NAME", "vector_index"),
         vector_search_embedding_path=os.getenv("VECTOR_SEARCH_EMBEDDING_PATH", "embedding"),
         vector_search_dimensions=int(os.getenv("VECTOR_SEARCH_DIMENSIONS", "384")),
